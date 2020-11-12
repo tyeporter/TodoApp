@@ -7,10 +7,12 @@ import com.tyeporter.todoapp.Model.TodoList;
 import com.tyeporter.todoapp.Repo.TodoListRepo;
 
 import org.json.simple.JSONObject;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TodoListServiceImpl implements TodoListService {
 
-	TodoListRepo repo;
+	final TodoListRepo repo;
 
 	public TodoListServiceImpl(TodoListRepo repo) {
 		this.repo = repo;
@@ -43,7 +45,7 @@ public class TodoListServiceImpl implements TodoListService {
 	@Override
 	public JSONObject deleteTodoListById(UUID id) {
 		repo.deleteById(id);
-		
+
 		JSONObject response = new JSONObject();
 		response.put("message", "Deleted todo list");
 		return response;
@@ -55,7 +57,7 @@ public class TodoListServiceImpl implements TodoListService {
 		todoList.map(updatedTodoList -> {
 			updatedTodoList.setTitle(newTodoList.getTitle());
 			updatedTodoList.setTasks(newTodoList.getTasks());
-			return todoList;
+			return updatedTodoList;
 		});
 
 		JSONObject response = new JSONObject();
