@@ -14,7 +14,9 @@ public interface TodoListService {
 	public Iterable<TodoList> getAllTodoList();
 	public JSONObject deleteAllTodoLists();
 	public JSONObject deleteTodoListById(UUID id);
+	public JSONObject deleteTodoListByTitle(String title);
 	public JSONObject updateTodoListById(UUID id, TodoList todoList);
+	public JSONObject updateTodoListByTitle(String title, TodoList todoList);
 	public JSONObject createTodoList(TodoList todoList);
 
 }

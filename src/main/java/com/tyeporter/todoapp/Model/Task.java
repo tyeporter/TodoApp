@@ -30,6 +30,11 @@ public class Task {
 		this.description = description;
 	}
 
+	public Task(TodoList todoList, String description) {
+		this.todoList = todoList;
+		this.description = description;
+	}
+
 	public UUID getId() {
 		return id;
 	}
@@ -60,7 +65,7 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task { id = " + id + ", description = " + description + ", isComplete = " + isComplete + " }";  
+		return "Task { id = " + this.id + ", description = " + this.description + ", isComplete = " + this.isComplete + ", todoList = " + this.todoList + " }";  
 	}
 
 }

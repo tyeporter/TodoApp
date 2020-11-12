@@ -20,7 +20,7 @@ public class TodoList {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	private String title;
-	@OneToMany(mappedBy = "todo_lists", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "todoList", fetch = FetchType.LAZY)
 	private Set<Task> tasks;
 
 	public TodoList() {}
@@ -51,7 +51,7 @@ public class TodoList {
 
 	@Override
 	public String toString() {
-		return "TodoList { id = " + id + ", title = " + title + ", tasks = " + tasks + " }";  
+		return "TodoList { id = " + this.id + ", title = " + this.title + ", tasks = " + this.tasks + " }";  
 	}
 
 }

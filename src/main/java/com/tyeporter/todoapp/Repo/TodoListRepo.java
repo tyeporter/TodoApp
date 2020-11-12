@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TodoListRepo extends CrudRepository<TodoList, UUID> {
 
-	Optional<TodoList> findTodoListByTitle(String title);
+	Optional<TodoList> findByTitle(String title);
+	void deleteByTitle(String title);
 
 }

@@ -25,7 +25,7 @@ public class TodoListServiceImpl implements TodoListService {
 
 	@Override
 	public Optional<TodoList> getTodoListByTitle(String title) {
-		return repo.findTodoListByTitle(title);
+		return repo.findByTitle(title);
 	}
 
 	@Override
@@ -52,8 +52,31 @@ public class TodoListServiceImpl implements TodoListService {
 	}
 
 	@Override
+	public JSONObject deleteTodoListByTitle(String title) {
+		repo.deleteByTitle(title);
+
+		JSONObject response = new JSONObject();
+		response.put("message", "Deleted todo list");
+		return response;
+	}
+
+	@Override
 	public JSONObject updateTodoListById(UUID id, TodoList newTodoList) {
 		Optional<TodoList> todoList = repo.findById(id);
+		todoList.map(updatedTodoList -> {
+			updatedTodoList.setTitle(newTodoList.getTitle());
+			updatedTodoList.setTasks(newTodoList.getTasks());
+			return updatedTodoList;
+		});
+
+		JSONObject response = new JSONObject();
+		response.put("message", "Updated todo list");
+		return response;
+	}
+
+	@Override
+	public JSONObject updateTodoListByTitle(String title, TodoList newTodoList) {
+		Optional<TodoList> todoList = repo.findByTitle(title);
 		todoList.map(updatedTodoList -> {
 			updatedTodoList.setTitle(newTodoList.getTitle());
 			updatedTodoList.setTasks(newTodoList.getTasks());
